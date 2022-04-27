@@ -1,9 +1,71 @@
 ﻿@page "/"
+@using LemonadeStand.Components.Cards
+@using LemonadeStand.Components.Forms
+@using Microsoft.Extensions.Logging
+@*inject ILogger<lfsdlfsl> Logger
+*@
 
-<PageTitle>Index</PageTitle>
+<PageTitle>Lemonade Stand</PageTitle>
 
-<h1>Hello, world!</h1>
+<h1>Lemonade Stand!</h1>
 
-Welcome to your new app.
+Make an order
+    <div class="container">
+        <div class="card-group">
+            <AppleCard> </AppleCard>
+            <WatermelonCard></WatermelonCard>
+            <OrangeCard></OrangeCard>
+        </div>
+    </div>
+    <div class="container">
+    <OrderForm></OrderForm>
+    </div>
+   
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+
+
+@*<EditForm Model="@LemonadeViewModel" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <p>
+        <label>
+            Identifier:
+            <InputText @bind-Value="LemonadeViewModel.Lemonade" />
+        </label>
+    </p>*@
+    @*<p>
+        <label>
+            Description (optional):
+            <InputTextArea @bind-Value="starship.Description" />
+        </label>
+    </p>
+    <p>
+        <label>
+            Primary Classification:
+            <InputSelect @bind-Value="starship.Classification">
+                <option value="">Select classification ...</option>
+                <option value="Exploration">Exploration</option>
+                <option value="Diplomacy">Diplomacy</option>
+                <option value="Defense">Defense</option>
+            </InputSelect>
+        </label>
+    </p>*@
+   
+@*
+    <button type="submit">Submit</button>
+
+  
+</EditForm>*@
+
+
+@code {
+    //private LemonadeViewModel lemonadeViewModel = new();
+
+    //private void HandleValidSubmit()
+    //{
+    //    Logger.LogInformation("HandleValidSubmit called");
+
+    //    // Process the valid form
+    //}
+}

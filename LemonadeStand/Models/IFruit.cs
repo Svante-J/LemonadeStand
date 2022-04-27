@@ -1,9 +1,14 @@
-﻿namespace LemonadeStand.Models
+﻿using LemonadeStand.Controllers;
+using System.Collections.ObjectModel;
+
+namespace LemonadeStand.Models
 {
     
     public interface IFruit
     {
         string Name { get; }
+
+        
     }
     public interface IRecipe
     {

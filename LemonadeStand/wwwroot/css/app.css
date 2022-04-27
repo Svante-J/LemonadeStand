@@ -62,3 +62,14 @@ a, .btn-link {
     .blazor-error-boundary::after {
         content: "An error has occurred."
     }
+.Card-Container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 1em;
+}
+.Card-Group {
+    display: flex;
+    justify-content: flex-start;
+    gap: 1em;
+}
