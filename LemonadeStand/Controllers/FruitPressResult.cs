@@ -16,8 +16,7 @@ namespace LemonadeStand.Controllers
             FruitPressResult result = new FruitPressResult();
 
             double moneyleft = Calkulator.MoneyLeft(orderedGlassQuantity, recipe.PricePerGlass, moneyPaid);
-            
-            result.ErrorMsg = GetErrorMsg();
+                        
             return result;
         }
 
@@ -28,6 +27,10 @@ namespace LemonadeStand.Controllers
         }
         public string GetErrorMsg() => ErrorMsg;
         public bool GetPressSucces() => PressSucces;
-        
+
+        internal static string HandleOrder(FruitPressResult fruitPressResult)
+        {
+            retun null;
+        }
     }
 }

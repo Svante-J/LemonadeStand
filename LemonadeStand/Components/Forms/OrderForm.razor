@@ -4,11 +4,11 @@
 
      @if (isRegistrationSuccess)
         {
-            <div class="alert alert-success" role="alert">Registration successful</div>
+            
+            <div class="alert alert-success" role="alert"> <h5>@succesMsg </h5></div>
         }   
-    <EditForm Model="@lemonadeModel" OnValidSubmit="RegisterLemonade">
-        <DataAnnotationsValidator></DataAnnotationsValidator>
-        <CustomFormValidator @ref="customFormValidator" />
+    <EditForm Model="@lemonadeModel" OnSubmit="RegisterLemonade">
+        <DataAnnotationsValidator></DataAnnotationsValidator>      
 
         <div class="form-group">
             <label for="lemonade">Lemonade</label>
@@ -34,6 +34,16 @@
             <label for="applesAdded">Apples Added</label>
             <InputNumber id="applesAdded" @bind-Value="@lemonadeModel.ApplesAdded" class="form-control"></InputNumber>
             <ValidationMessage For="@(() => lemonadeModel.ApplesAdded)" />
+        </div>
+        <div class="form-group">
+            <label for="applesAdded">Melons Added</label>
+            <InputNumber id="melonsAdded" @bind-Value="@lemonadeModel.MelondAdded" class="form-control"></InputNumber>
+            <ValidationMessage For="@(() => lemonadeModel.MelondAdded)" />
+        </div>
+        <div class="form-group">
+            <label for="applesAdded">Oranges Added</label>
+            <InputNumber id="orangesAdded" @bind-Value="@lemonadeModel.OrangeAdded" class="form-control"></InputNumber>
+            <ValidationMessage For="@(() => lemonadeModel.OrangeAdded)" />
         </div>
         <button type="submit" class="btn btn-primary">
             Process Order 
