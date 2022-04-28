@@ -17,7 +17,7 @@ namespace LemonadeStand.Components.Forms
         protected LemonadeViewModel lemonadeModel = new();        
 
         protected bool isRegistrationSuccess = false;
-        protected string succesMsg = "";
+        protected string succesMsg = "Rendera meag";
 
         protected async Task RegisterLemonade()
         {
@@ -41,38 +41,23 @@ namespace LemonadeStand.Components.Forms
 
                 //string anotherMsg = FruitPressResult.HandleOrder(fruitPressResult);
 
-                if (fruitPressResult.PressSucces)
+                if (fruitPressResult.IsPressSucces)
                 {
-                    succesMsg = "detta gick bra och lite matte";
+                    succesMsg = fruitPressResult.Message;
                 }
                 else
                 {
-                    succesMsg = "jag borde kanske inte heta succesMsg";
+                    succesMsg = fruitPressResult.GetErrorMsg();
                 }
                 Logger.LogInformation("The registration is successful");
 
-                succesMsg = "rendera mig pleeaze";
+                
                 isRegistrationSuccess = true;
 
 
             }
 
 
-
-
-
-            //    if (response.StatusCode == HttpStatusCode.BadRequest && errors.Count > 0)
-            //    {
-            //        customFormValidator.DisplayFormErrors(errors);
-            //        throw new HttpRequestException($"Validation failed. Status Code: {response.StatusCode}");
-            //    }
-            //    else
-            //    {
-            //        isRegistrationSuccess = true;
-            //        Logger.LogInformation("The registration is successful");
-            //    }
-
-            //}
             catch (Exception ex)
             {
                 Logger.LogError(ex.Message);

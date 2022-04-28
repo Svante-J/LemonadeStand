@@ -7,5 +7,11 @@
         {
           return orderedGlassQuantity * pricePerGlass - moneyPaid;            
         }
+
+        internal static decimal FruitsLeft(int count, decimal consumptionPerGlass, int orderedGlassQuantity)
+        {
+            
+            return (decimal)Math.Round(count - (consumptionPerGlass * orderedGlassQuantity));
+        }
     }
 }

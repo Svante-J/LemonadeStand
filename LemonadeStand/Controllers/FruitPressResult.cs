@@ -6,17 +6,28 @@ namespace LemonadeStand.Controllers
 {
     public class FruitPressResult : IFruitPressService
     {
-        public bool PressSucces { get; set; }
-        bool MoneyBiggerThanCost { get; set; }
-        string ErrorMsg { get; set; }
+        public bool IsPressSucces { get; set; }
+        public bool IsMoneyBiggerThanCost { get; set; }
+        public bool IsFruitBiggerThanConsum { get; set; }   
+        public string Message { get; set; }
         //Object Recipe { get; set; }
 
         public FruitPressResult Produce(IRecipe recipe, Collection<IFruit> fruits, int moneyPaid, int orderedGlassQuantity)
         {
             FruitPressResult result = new FruitPressResult();
 
-            double moneyleft = Calkulator.MoneyLeft(orderedGlassQuantity, recipe.PricePerGlass, moneyPaid);
-                        
+            var moneyLeft = Calkulator.MoneyLeft(orderedGlassQuantity, recipe.PricePerGlass, moneyPaid);
+            var fruitsLeft = Calkulator.FruitsLeft(fruits.Count, recipe.ConsumptionPerGlass, orderedGlassQuantity);
+            if (moneyLeft >= 0 || fruitsLeft >= 0)
+            { 
+                IsPressSucces = true;
+                Message = @$"Moneleft = {moneyLeft}" + @$"Fruitsleft = {fruitsLeft}";
+            }
+            else
+            {
+                IsPressSucces = false;
+                Message = "naaaaaa";
+            }
             return result;
         }
 
@@ -25,12 +36,9 @@ namespace LemonadeStand.Controllers
 
             return null;
         }
-        public string GetErrorMsg() => ErrorMsg;
-        public bool GetPressSucces() => PressSucces;
+        public string GetErrorMsg() => Message;
+        public bool GetPressSucces() => IsPressSucces;
 
-        internal static string HandleOrder(FruitPressResult fruitPressResult)
-        {
-            retun null;
-        }
+        
     }
 }
