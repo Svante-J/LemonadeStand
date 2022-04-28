@@ -1,37 +1,45 @@
-﻿<EditForm Model="lemonadeModel" OnInvalidSubmit="HandleLemonade">
-    <DataAnnotationsValidator></DataAnnotationsValidator>
-    <div class="form-group">
-        <label for="lemonade">Lemonade</label>
-        <InputSelect id="lemonade" @bind-Value="lemonadeModel.Lemonade" class="form-control">
-            <option value="-- Select Lemonade --">-- Select Lemonade --</option>
-            <option value="Apple Lemonade">Apple Lemonade</option>
-            <option value="Watermelon lemonade">Watermelon Lemonade</option>
-            <option value="Orange Lemonade">Orange Lemonade</option>
-        </InputSelect>
-    </div>
-    <div class="form-group">
-        <label for="quantity">Quantity</label>
-        <InputNumber id="quantity" @bind-Value="lemonadeModel.Quantity" class="form-control"></InputNumber>
-    </div>
-    <div class="form-group">
-        <label for="moneyPaid">Money Paid</label>
-        <InputNumber id="moneyPaid" @bind-Value="lemonadeModel.MoneyPaid" class="form-control"></InputNumber>
-    </div>
-    <div class="form-group">
-        <label for="applesAdded">Apples Added</label>
-        <InputNumber id="applesAdded" @bind-Value="lemonadeModel.ApplesAdded" class="form-control"></InputNumber>
-    </div>
-    <button type="submit" class="btn btn-primary">
-        Process Order 
-    </button>
-    <ValidationSummary></ValidationSummary>
-</EditForm>
+﻿@inherits OrderFormModalBase
 
-@code {
-    private LemonadeViewModel lemonadeModel = new LemonadeViewModel();
 
-    private void HandleLemonade()
-    {
-        
-    }
-}
+
+     @if (isRegistrationSuccess)
+        {
+            <div class="alert alert-success" role="alert">Registration successful</div>
+        }   
+    <EditForm Model="@lemonadeModel" OnValidSubmit="RegisterLemonade">
+        <DataAnnotationsValidator></DataAnnotationsValidator>
+        <CustomFormValidator @ref="customFormValidator" />
+
+        <div class="form-group">
+            <label for="lemonade">Lemonade</label>
+            <InputSelect id="lemonade" @bind-Value="@lemonadeModel.Lemonade" class="form-control">
+                <option value="-- Select Lemonade --">-- Select Lemonade --</option>
+                <option value="Apple Lemonade">Apple Lemonade</option>
+                <option value="Watermelon lemonade">Watermelon Lemonade</option>
+                <option value="Orange Lemonade">Orange Lemonade</option>                
+            </InputSelect>
+            <ValidationMessage For="@(() => lemonadeModel.Lemonade)" />            
+        </div>
+        <div class="form-group">
+            <label for="quantity">Quantity</label>
+            <InputNumber id="quantity" @bind-Value="@lemonadeModel.Quantity" class="form-control"></InputNumber>
+            <ValidationMessage For="@(() => lemonadeModel.Quantity)" />
+        </div>
+        <div class="form-group">
+            <label for="moneyPaid">Money Paid</label>
+            <InputNumber id="moneyPaid" @bind-Value="@lemonadeModel.MoneyPaid" class="form-control"></InputNumber>
+             <ValidationMessage For="@(() => lemonadeModel.MoneyPaid)" />
+        </div>
+        <div class="form-group">
+            <label for="applesAdded">Apples Added</label>
+            <InputNumber id="applesAdded" @bind-Value="@lemonadeModel.ApplesAdded" class="form-control"></InputNumber>
+            <ValidationMessage For="@(() => lemonadeModel.ApplesAdded)" />
+        </div>
+        <button type="submit" class="btn btn-primary">
+            Process Order 
+        </button>
+        <ValidationSummary></ValidationSummary>
+    </EditForm>
+
+
+

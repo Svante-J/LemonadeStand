@@ -2,70 +2,18 @@
 @using LemonadeStand.Components.Cards
 @using LemonadeStand.Components.Forms
 @using Microsoft.Extensions.Logging
-@*inject ILogger<lfsdlfsl> Logger
-*@
+
 
 <PageTitle>Lemonade Stand</PageTitle>
 
-<h1>Lemonade Stand!</h1>
-
-Make an order
-    <div class="container">
-        <div class="card-group">
+    <h1>Lemonade Stand!</h1> 
+        
+    <div class="card-group">
             <AppleCard> </AppleCard>
             <WatermelonCard></WatermelonCard>
             <OrangeCard></OrangeCard>
-        </div>
     </div>
-    <div class="container">
+    <div class="Container" >
+    
     <OrderForm></OrderForm>
     </div>
-   
-
-
-
-@*<EditForm Model="@LemonadeViewModel" OnValidSubmit="@HandleValidSubmit">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
-
-    <p>
-        <label>
-            Identifier:
-            <InputText @bind-Value="LemonadeViewModel.Lemonade" />
-        </label>
-    </p>*@
-    @*<p>
-        <label>
-            Description (optional):
-            <InputTextArea @bind-Value="starship.Description" />
-        </label>
-    </p>
-    <p>
-        <label>
-            Primary Classification:
-            <InputSelect @bind-Value="starship.Classification">
-                <option value="">Select classification ...</option>
-                <option value="Exploration">Exploration</option>
-                <option value="Diplomacy">Diplomacy</option>
-                <option value="Defense">Defense</option>
-            </InputSelect>
-        </label>
-    </p>*@
-   
-@*
-    <button type="submit">Submit</button>
-
-  
-</EditForm>*@
-
-
-@code {
-    //private LemonadeViewModel lemonadeViewModel = new();
-
-    //private void HandleValidSubmit()
-    //{
-    //    Logger.LogInformation("HandleValidSubmit called");
-
-    //    // Process the valid form
-    //}
-}

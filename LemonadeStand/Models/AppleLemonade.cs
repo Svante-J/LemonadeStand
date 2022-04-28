@@ -13,6 +13,8 @@
 
         public decimal ConsumptionPerGlass { get; private set; } = 2;
 
-        public int PricePerGlass { get; private set; } = 9;
+        public int PricePerGlass { get; private set; } = 10;
+
+                
     }
 }

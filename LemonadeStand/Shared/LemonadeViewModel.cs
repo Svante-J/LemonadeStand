@@ -8,7 +8,7 @@ public class LemonadeViewModel
     [LemonadeTypeValidation]
     public string? Lemonade{ get; set; }
     [Required]
-    public int? Quantity { get; set; }
+    public int Quantity { get; set; }
     [Required]
     public int MoneyPaid { get; set; }
     public int ApplesAdded { get; set; }
