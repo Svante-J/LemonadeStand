@@ -63,17 +63,17 @@ a, .btn-link {
         content: "An error has occurred."
     }
 .Card-Container {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    gap: 1em;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    gap: 1em !important;
 }
 .Card-Group {
     display: flex;
     justify-content: flex-start;
     gap: 1em;
 }
-.Container {
-    display: flex;
-    justify-content: flex-start;
+
+.Alert-Alert {
+    max-width:100px;
 }

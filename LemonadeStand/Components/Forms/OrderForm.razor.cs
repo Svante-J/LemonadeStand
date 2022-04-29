@@ -13,16 +13,13 @@ namespace LemonadeStand.Components.Forms
 
         [Inject]
         ILogger<LemonadeViewModel> Logger { get; set; }
-
-        protected LemonadeViewModel lemonadeModel = new();        
-
-        protected bool isRegistrationSuccess = false;
-        protected string succesMsg = "Rendera meag";
+        protected LemonadeViewModel lemonadeModel = new();   
+        protected bool isRegistrationSuccess = true;
+        protected string message = "Order calculations";
 
         protected async Task RegisterLemonade()
-        {
+        {            
             
-            isRegistrationSuccess = false;
             try
             {               
                 
@@ -30,31 +27,31 @@ namespace LemonadeStand.Components.Forms
                 IRecipe recipe;
                 IFruit fruit;
                 Collection<IFruit> fruitlist = new();
-                decimal fruitsNeeded = 0;
+                int orderdGlassQty = lemonadeModel.Quantity;
+                
 
                 if (lemonadeModel.Lemonade.ToLower() == "apple lemonade")                
-                    fruitPressResult = ProduceApple(fruitPressResult, out recipe, out fruit, fruitlist, out fruitsNeeded);
+                    fruitPressResult = PreProduceApple(fruitPressResult, out recipe, out fruit, fruitlist);
                 if (lemonadeModel.Lemonade.ToLower() == "watermelon lemonade")
-                    fruitPressResult = ProduceApple(fruitPressResult, out recipe, out fruit, fruitlist, out fruitsNeeded);
+                    fruitPressResult = PreProduceMelon(fruitPressResult, out recipe, out fruit, fruitlist);
                 if (lemonadeModel.Lemonade.ToLower() == "orange lemonade")
-                    fruitPressResult = ProduceApple(fruitPressResult, out recipe, out fruit, fruitlist, out fruitsNeeded);
-
-                //string anotherMsg = FruitPressResult.HandleOrder(fruitPressResult);
+                    fruitPressResult = PreProduceOrange(fruitPressResult, out recipe, out fruit, fruitlist);
+                
 
                 if (fruitPressResult.IsPressSucces)
                 {
-                    succesMsg = fruitPressResult.Message;
+                    message = fruitPressResult.Message;
+                    Logger.LogInformation("The registration is successful");
+                    isRegistrationSuccess = true;
                 }
                 else
                 {
-                    succesMsg = fruitPressResult.GetErrorMsg();
+                    message = fruitPressResult.Message;
+                    Logger.LogInformation("The registration failed");
+                    isRegistrationSuccess = false;
                 }
-                Logger.LogInformation("The registration is successful");
-
+                                               
                 
-                isRegistrationSuccess = true;
-
-
             }
 
 
@@ -63,17 +60,46 @@ namespace LemonadeStand.Components.Forms
                 Logger.LogError(ex.Message);
             }
         }
-
-        private FruitPressResult ProduceApple(FruitPressResult fruitPressResult, out IRecipe recipe, out IFruit fruit, Collection<IFruit> fruitlist, out decimal fruitsNeeded)
+               
+     
+        private FruitPressResult PreProduceApple(FruitPressResult fruitPressResult, out IRecipe recipe, out IFruit fruit, Collection<IFruit> fruitlist)
         {
             fruit = new Apple();
             recipe = new AppleLemonadeRecipe();
-            fruitsNeeded = (lemonadeModel.Quantity * recipe.ConsumptionPerGlass);
-            for (int i = 0; i < (fruitsNeeded); i++)
+            
+            for (int i = 0; i < lemonadeModel.ApplesAdded; i++)
             {
-
                 fruitlist.Add(fruit);
             }
+           
+            fruitPressResult = fruitPressResult.Produce
+                (recipe, fruitlist, lemonadeModel.MoneyPaid, lemonadeModel.Quantity);
+            return fruitPressResult;
+        }
+        private FruitPressResult PreProduceMelon(FruitPressResult fruitPressResult, out IRecipe recipe, out IFruit fruit, Collection<IFruit> fruitlist)
+        {
+            fruit = new Watermelon();
+            recipe = new WatermelonLemonadeRecipe();
+
+            for (int i = 0; i < lemonadeModel.MelondAdded; i++)
+            {
+                fruitlist.Add(fruit);
+            }
+
+            fruitPressResult = fruitPressResult.Produce
+                (recipe, fruitlist, lemonadeModel.MoneyPaid, lemonadeModel.Quantity);
+            return fruitPressResult;
+        }
+        private FruitPressResult PreProduceOrange(FruitPressResult fruitPressResult, out IRecipe recipe, out IFruit fruit, Collection<IFruit> fruitlist)
+        {
+            fruit = new Orange();
+            recipe = new OrangeLemonadeRecipe();
+
+            for (int i = 0; i < lemonadeModel.OrangeAdded; i++)
+            {
+                fruitlist.Add(fruit);
+            }
+
             fruitPressResult = fruitPressResult.Produce
                 (recipe, fruitlist, lemonadeModel.MoneyPaid, lemonadeModel.Quantity);
             return fruitPressResult;

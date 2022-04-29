@@ -5,13 +5,13 @@
         
         internal static double MoneyLeft(int orderedGlassQuantity, int pricePerGlass, int moneyPaid) 
         {
-          return orderedGlassQuantity * pricePerGlass - moneyPaid;            
+          return moneyPaid - (orderedGlassQuantity * pricePerGlass);            
         }
 
         internal static decimal FruitsLeft(int count, decimal consumptionPerGlass, int orderedGlassQuantity)
         {
             
-            return (decimal)Math.Round(count - (consumptionPerGlass * orderedGlassQuantity));
+            return Math.Round(count - (consumptionPerGlass * orderedGlassQuantity) , 1);
         }
     }
 }

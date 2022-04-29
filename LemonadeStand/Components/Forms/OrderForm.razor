@@ -5,7 +5,12 @@
      @if (isRegistrationSuccess)
         {
             
-            <div class="alert alert-success" role="alert"> <h5>@succesMsg </h5></div>
+            <div class="alert alert-success" role="alert"> <h5>@message </h5></div> <br/>
+        }
+        @if (!isRegistrationSuccess)
+        {
+            
+            <div class="alert alert-danger" role="alert"> <h5>@message </h5></div><br/>
         }   
     <EditForm Model="@lemonadeModel" OnSubmit="RegisterLemonade">
         <DataAnnotationsValidator></DataAnnotationsValidator>      

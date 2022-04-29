@@ -11,7 +11,7 @@
 
         public Type AllowedFruit { get; private set; } = typeof(Apple);
 
-        public decimal ConsumptionPerGlass { get; private set; } = 2;
+        public decimal ConsumptionPerGlass { get; private set; } = 2.5M;
 
         public int PricePerGlass { get; private set; } = 10;
 
